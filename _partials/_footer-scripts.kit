@@ -1,0 +1,144 @@
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+gsap.registerPlugin(MorphSVGPlugin);
+
+// ARM - ANDY
+const arm = document.getElementById('andy-arm');
+gsap.set(arm, { transformOrigin: "center center", transformBox: "fill-box" });
+
+gsap.timeline({
+repeat: -1,
+repeatDelay: 7 })
+.to(arm, { duration: 1, x: -10, y: 10, rotation: 2 })
+.to(arm, { duration: 1, x: 0, y: -10, rotation: -1 })
+.to(arm, { duration: 1, x: 0, y: 0, rotation: 0 });
+
+// ANDY EYEBROWS
+const andyEyebrows = document.getElementById('andy-eyebrows');
+gsap.set(andyEyebrows, { transformBox: "fill-box" });
+
+gsap.timeline({
+repeat: -1,
+repeatDelay: 7 })
+
+.to(andyEyebrows, { duration: 0.5, y: -5, ease: "power1.out" })
+.to(andyEyebrows, { duration: 5, y: -5 })
+.to(andyEyebrows, { duration: 0.5, y: 0, ease: "power1.in" })
+.to({}, { duration: 4 });
+
+// RICH EYEBROWS
+const richEyebrows = document.getElementById('rich-eyebrows');
+gsap.set(richEyebrows, { transformBox: "fill-box" });
+
+// ANDY HEAD
+const andyHead = document.getElementById('andy-head');
+gsap.set(andyHead, {
+transformOrigin: "center bottom",
+transformBox: "fill-box" });
+
+gsap.timeline({ repeat: -1 })
+.to(andyHead, { duration: 2, rotation: -0.5, y: -0.2 })
+.to(andyHead, { duration: 2.5, rotation: 0.5, y: 0 })
+.to(andyHead, { duration: 3, rotation: 0, ease: "elastic.out(1, 0.3)" })
+.to({}, { duration: 2 });
+
+// RICH HEAD
+const richHead = document.getElementById('rich-head');
+gsap.set(richHead, {
+transformOrigin: "center bottom",
+transformBox: "fill-box" });
+
+const richTimeline = gsap.timeline({ repeat: -1, defaults: { ease: "sine.inOut" } })
+.to(richHead, { duration: 1.5, rotation: .2, y: 1 }, 0)
+.to(richEyebrows, { duration: 0.75, y: -4, ease: "power2.out" }, 0)
+.to(richEyebrows, { duration: 0.75, y: -4 }, 0.75)
+.to(richHead, { duration: 2, rotation: -0.2, y: 0 }, 1.5)
+.to(richEyebrows, { duration: 1, y: -2 }, 1.5)
+.to(richHead, { duration: 2.5, rotation: 0, y: 0, ease: "elastic.out(1, 0.4)" }, 3.5)
+.to(richEyebrows, { duration: 1.25, y: 0, ease: "power1.in" }, 3.5)
+.to({}, { duration: 1.5 }, 6);
+
+// ANDY LINES
+const andyLines = gsap.utils.toArray("#andy-lines path");
+gsap.set(andyLines, { strokeWidth: 0 });
+
+gsap.timeline({
+repeat: -1,
+repeatDelay: 8 })
+
+.to(andyLines[0], { duration: 0.3, strokeWidth: 2, ease: "power1.out" })
+.to(andyLines[1], { duration: 0.3, strokeWidth: 2, ease: "power1.out" }, "-=0.15")
+.to(andyLines[2], { duration: 0.3, strokeWidth: 2, ease: "power1.out" }, "-=0.15")
+.to(andyLines, { duration: 0.5, strokeWidth: 0, delay: 1, ease: "power1.in" });
+
+// RICH LINES
+const richLines = gsap.utils.toArray("#rich-lines path");
+gsap.set(richLines, { strokeWidth: 0 });
+
+gsap.timeline({
+repeat: -1,
+repeatDelay: 7 })
+
+.to(richLines[0], { duration: 0.4, strokeWidth: 2, ease: "power2.out" })
+.to(richLines[1], { duration: 0.4, strokeWidth: 2, ease: "power2.out" }, "-=0.2")
+.to(richLines[2], { duration: 0.4, strokeWidth: 2, ease: "power2.out" }, "-=0.2")
+.to(richLines, { duration: 0.6, strokeWidth: 0, delay: 1.5, ease: "power2.in" });
+
+// ANDY BLINK
+const andyEyes = document.getElementById('andy-eyes');
+const andyOpenEyes = andyEyes.getAttribute('d');
+const andyClosedEyes = "M590.5 244c0 0-3-0.5-6.5-0.5s-6.5 0.5-6.5 0.5 3 0 6.5 0 6.5-0.5 6.5-0.5Zm73-1c0 0-3-0.5-6.5-0.5s-6.5 0.5-6.5 0.5 3 0 6.5 0 6.5-0.5 6.5-0.5Z";
+
+// RICH BLINK
+const richEyes = document.getElementById('rich-eyes');
+const richOpenEyes = richEyes.getAttribute('d');
+const richClosedEyes = "M974.5 232c0 0-3-0.5-6.5-0.5s-6.5 0.5-6.5 0.5 3 0 6.5 0 6.5-0.5 6.5-0.5Zm73-1c0 0-3-0.5-6.5-0.5s-6.5 0.5-6.5 0.5 3 0 6.5 0 6.5-0.5 6.5-0.5Z";
+
+// ANDY BLINK PATTERN
+function andyBlink() {
+gsap.timeline()
+.to(andyEyes, { duration: 0.08, morphSVG: andyClosedEyes, ease: "power2.in" })
+.to(andyEyes, {
+duration: 0.12,
+morphSVG: andyOpenEyes,
+ease: "power2.out",
+onComplete: () => {
+gsap.delayedCall(3 + Math.random() * 2, andyBlink); }
+});
+
+if(Math.random() < 0.2) {
+gsap.delayedCall(0.3, () => {
+gsap.to(andyEyes, { duration: 0.06, morphSVG: andyClosedEyes })
+.to(andyEyes, { duration: 0.1, morphSVG: andyOpenEyes }); });
+}
+}
+
+// RICH BLINK PATTERN
+function richBlink() {
+gsap.timeline()
+.to(richEyes, {
+duration: 0.15,
+morphSVG: richClosedEyes,
+ease: "power2.in",
+onStart: () => {
+gsap.to(richHead, { duration: 0.2, y: "+=2", ease: "sine.out" }); }
+})
+.to(richEyes, {
+duration: 0.2,
+morphSVG: richOpenEyes,
+ease: "elastic.out(1, 0.5)",
+onComplete: () => {
+gsap.to(richHead, { duration: 0.3, y: 0, ease: "sine.inOut" });
+gsap.delayedCall(5 + Math.random() * 4, richBlink); }
+});
+}
+
+// START BLINKING
+gsap.delayedCall(1, andyBlink);
+gsap.delayedCall(2.5, richBlink);
+
+document.addEventListener('click', () => {
+andyBlink();
+richBlink(); });
+});
+</script>

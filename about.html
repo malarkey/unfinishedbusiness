@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About Unfinished Business • Podcast with Andy Clarke and Richard Rutter</title>
+<!-- ********************************************************
+Design and development: Andy Clarke
+Company: Stuff & Nonsense
+URL: https://stuffandnonsense.co.uk
+LinkedIn: https://www.linkedin.com/in/allthatmalarkey
+Mastodon: https://mastodon.social/@malarkey
+******************************************************** -->
+
+
+
+
+<style>:root {
+/* Typography */
+--font-family-default: "Bricolage Grotesque", Helvetica, sans-serif;
+
+--font-size-xs: clamp(0.6944rem, 0.6856rem + 0.0444vw, 0.72rem);
+--font-size-s: clamp(0.8333rem, 0.8101rem + 0.1159vw, 0.9rem);
+--font-size-r: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
+--font-size-m: clamp(1.2rem, 1.1283rem + 0.3587vw, 1.4063rem);
+--font-size-l: clamp(1.44rem, 1.3295rem + 0.5527vw, 1.7578rem);
+--font-size-xl: clamp(1.728rem, 1.5648rem + 0.8161vw, 2.1973rem);
+--font-size-2xl: clamp(2.0736rem, 1.8395rem + 1.1704vw, 2.7466rem);
+
+--font-weight-l: 200;
+--font-weight-r: 400;
+--font-weight-m: 600;
+--font-weight-bd: 800;
+--lineheight-r: 1.5;
+--lineheight-s: 1.2;
+
+/* UI colours */
+--color-accent: #fde800;
+--color-background-default: #fde800;
+--color-background-alt: #734026;
+--color-base: #f0f1f2;
+--color-border: #734026;
+--color-text-default: #734026;
+--color-text-alt: #f0f1f2;
+--color-text-link: #734026;
+--color-button-background: #734026;
+--color-button-text: #f0f1f2;
+
+/* Borders */
+--border-width-r: 1px;
+--border-width-l: 5px;
+--border-radius-s: 5px;
+--border-radius-r: 10x;
+--border-radius-l: 15px;
+
+/* Layout */
+--grid-12-col: repeat(12, 1fr);
+--grid-column-gap: clamp(1.6875rem, 1.6223rem + 0.3261vi, 1.875rem);
+--grid-row-gap: clamp(1.00rem, calc(0.89rem + 0.54vw), 1.31rem);
+--max-width: 48rem;
+
+/* Spacing */
+--spacing-s: clamp(0.5625rem, 0.5408rem + 0.1087vi, 0.625rem);
+--spacing-r: clamp(1.125rem, 1.0815rem + 0.2174vi, 1.25rem);
+--spacing-m: clamp(1.6875rem, 1.6223rem + 0.3261vi, 1.875rem);
+--spacing-l: clamp(2.25rem, 2.163rem + 0.4348vi, 2.5rem);
+--spacing-xl: clamp(4.5rem, 3.4565rem + 5.2174vi, 5rem);
+
+/* Duration */
+--animate-duration: 1s;
+--animate-duration-fast: .5s;
+--animate-duration-faster: .25s;
+--animate-delay: 1s;
+--animate-function: ease-in;
+--animate-repeat: 1;
+
+/* Scale */
+--scale-up: 1.25;
+--scale-down: .98;
+
+/* Filters */
+--brightness-up: 1.15;
+--brightness-down: .85;
+--saturate-up: 1.25;
+--saturate-down: .85; }
+
+
+
+
+
+/* UTILITIES    ---------------------------------------- */
+
+@font-face {
+font-family: 'Bricolage-Grotesque';
+src: url('/fonts/Bricolage-Grotesque-Variable.woff2') format('woff2');
+font-display: swap;
+font-weight: normal;
+font-style: normal; }
+
+@-o-viewport {
+width: device-width; }
+
+@viewport {
+width: device-width; }
+
+::-moz-selection {
+background-color: #e0e8ef;
+text-shadow: none; }
+
+::selection {
+background-color: #e0e8ef;
+text-shadow: none; }
+
+::-webkit-scrollbar {
+height: 3px;
+width: 3px; }
+
+::-webkit-scrollbar-thumb {
+width: 3px;
+background-color: rgba(255,255,255,.25);
+border-radius: 3px; }
+
+::-webkit-scrollbar-track {
+background-color: rgba(255,255,255,.25);
+border-radius: 0; }
+
+[id] {
+scroll-margin-top: var(--spacing-l); }
+
+[data-visibility="hidden"],
+.visually-hidden {
+position: absolute;
+margin: -1px;
+padding: 0;
+height: 1px;
+width: 1px;
+overflow: hidden;
+border: 0;
+clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+white-space: nowrap; }
+
+rect, path, polygon, use, g, ellipse {
+transform-box: fill-box;
+transform-origin: 50% 50%;
+will-change: transform; }
+
+
+
+
+
+/* HTML/BODY   ---------------------------------------- */
+
+html {
+background-color: var(--color-background-default);
+-webkit-text-size-adjust: 100%;
+overflow-x: hidden;
+scroll-behavior: smooth; }
+
+@media screen and (prefers-reduced-motion: reduce) {
+html {
+scroll-behavior: auto;
+animation-duration: 1ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: 1ms !important; }
+}
+
+body {
+max-inline-size: 72rem;
+margin: 0 auto;
+padding-inline: var(--spacing-l);
+background-color: var(--color-background-default);
+color: var(--color-text-default);
+font-family: var(--font-family-default);
+font-feature-settings: liga 1;
+font-optical-sizing: auto;
+font-size: 1em;
+font-style: normal;
+font-variation-settings:
+"wdth" 100,
+"YTLC" 500;
+font-weight: var(--font-weight-r);
+line-height: var(--lineheight-r);
+-webkit-font-smoothing: auto; }
+
+@supports (font-variant-ligatures: common-ligatures) {
+body {
+font-feature-settings: normal;
+font-variant-ligatures: common-ligatures; }
+}
+
+
+
+/* ANCHORS   ---------------------------------------- */
+
+a,
+a:visited {
+color: var(--color-text-link);
+text-decoration: underline;
+text-decoration-color: var(--color-text-link-hover);
+text-decoration-thickness: .5px;
+text-underline-offset: .15em; }
+
+a:hover {
+color: var(--color-text-link); }
+
+a:active,
+a:focus-visible {
+color: var(--color-text-link);
+outline: none; }
+
+h1 a,
+h2 a {
+text-decoration: none; }
+
+a:not(:has(svg)) {
+filter: brightness(1);
+transition: filter var(--animate-duration-faster) var(--animate-function); }
+
+a:not(:has(svg)):hover {
+filter: brightness(.75); }
+
+a:not(:has(svg)):active,
+a:not(:has(svg)):focus-visible {
+filter: brightness(.5); }
+
+
+
+
+/* HEADLINES   ---------------------------------------- */
+
+h1, h2, h3, h4 {
+font-family: var(--font-family-default);
+font-style: normal;
+line-height: var(--lineheight-s);
+text-wrap: balance; }
+
+h1 {
+font-size: var(--font-size-2xl);
+font-weight: var(--font-weight-bd); }
+
+h2 {
+font-size: var(--font-size-xl); }
+
+h3 {
+font-size: var(--font-size-l); }
+
+h4 {
+font-size: var(--font-size-m); }
+
+
+
+
+
+/* PARAGRAPHS   ---------------------------------------- */
+
+p {
+font-family: var(--font-family-default);
+orphans: 3; }
+
+
+
+
+
+/* LISTS   ---------------------------------------- */
+
+ul {
+list-style-type: none;
+margin-block: var(--spacing-r);
+margin-inline: 0;
+padding-inline-start: 0; }
+
+ul li:before {
+content: "• ";
+color: var(--color-text-default); }
+
+ol {
+margin-block: var(--spacing-r);
+margin-inline: 0;
+padding-inline-start: 0; }
+
+ol li {
+margin-block-end: var(--spacing-s); }
+
+
+
+
+/* SMALL    ---------------------------------------- */
+
+small {
+display: block;
+line-height: var(--lineheight-r);
+font-size: var(--font-size-xs); }
+
+
+
+
+/* FORMS   ---------------------------------------- */
+
+form {
+margin: 0;
+padding: 0; }
+
+form div {
+margin-block-end: var(--spacing-r); }
+
+@media (min-width: 48em) {
+
+form div {
+margin-block-end: 0; }
+
+form > div {
+margin-block-end: var(--spacing-l); }
+
+form [data-role="row"] {
+display: flex;
+gap: var(--spacing-l); }
+
+form [data-role="row"] > * {
+flex: 1; }
+}
+
+label {
+display: inline-block;
+margin-block-start: 0;
+margin-block-end: var(--spacing-s);
+margin-inline: 0;
+font-family: var(--font-family-default);
+font-size: var(--font-size-r);
+font-weight: var(--font-weight-m);
+line-height: 1; }
+
+[type="email"],
+[type="text"],
+textarea {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+display: inline-block;
+margin: 0;
+padding: var(--spacing-s);
+inline-size: 100%;
+background-color: var(--color-base);
+border: var(--border-width-l) solid var(--color-border);
+border-radius: var(--border-radius-r);
+box-shadow: none;
+box-sizing: border-box;
+font-family: var(--font-family-default);
+font-size: var(--font-size-r);
+color: var(--color-text-default);
+transition: all var(--animate-duration-faster) var(--animate-function);
+caret-color: var(--color-accent); }
+
+[type="email"]:focus,
+[type="text"]:focus,
+textarea:focus {
+outline: 0;
+accent-color: var(--color-accent); }
+
+input[type]::-moz-placeholder {
+font-family: var(--font-family-default);
+font-size: var(--font-size-r);
+color: var(--color-text-default); }
+
+input[type]::placeholder {
+font-family: var(--font-family-default);
+font-size: var(--font-size-r);
+color: var(--color-text-default); }
+
+input:focus::-moz-placeholder {
+-moz-transition: opacity .5s .25s ease !important;
+transition: opacity .5s .25s ease !important;
+opacity: 0; }
+
+input:focus::placeholder {
+transition: opacity .5s .25s ease !important;
+opacity: 0; }
+
+textarea {
+block-size: 22rem; }
+
+
+
+
+/* IMAGES */
+
+img {
+border-width: 0;
+content-visibility: auto;
+max-width: 100%;
+vertical-align: middle;
+width: 100%; }
+
+img[width],
+img[height] {
+max-width: none; }
+
+
+
+
+/* TABLES    ---------------------------------------- */
+
+table {
+margin: 0 0 var(--spacing-r);
+width: 100%;
+background-color: transparent;
+border-collapse: collapse;
+font-family: inherit; }
+
+th, td {
+padding:var(--spacing-s) var(--spacing-m) var(--spacing-s) 0;
+font-size: var(--font-size-r);
+text-align: left;
+vertical-align: middle; }
+
+th {
+white-space: nowrap; }
+
+td:first-of-type {
+padding-left: var(--spacing-s); }
+
+thead th,
+thead td {
+border-bottom: var(--border-width-l) solid var(--color-border); }
+
+tbody th,
+tbody td {
+border-bottom: var(--border-width-r) solid var(--color-border); }
+
+[data-layout="responsive"] {
+display: inline-block;
+max-width: 100%;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+vertical-align: top;
+border-spacing: 0; }
+
+[data-layout="responsive"] th,
+[data-layout="responsive"] td {
+white-space: nowrap; }
+
+
+
+/* BANNER   ---------------------------------------- */
+
+header {
+position: relative;
+container-type: inline-size;
+margin-trim: block;
+margin-block: var(--spacing-l);
+text-align: center; }
+
+header h1,
+header h2 {
+margin-block: 0 var(--spacing-r);
+font-size:  var(--font-size-2xl);
+font-weight:  800;
+line-height: .8; }
+
+header p {
+font-size: var(--font-size-m);
+font-weight: var(--font-weight-m); }
+
+header #banner {
+margin-block: var(--spacing-l);
+background-color: var(--color-base);
+border: 2vw solid var(--color-border);
+border-radius: 50px; }
+
+header svg {
+border-radius: inherit; }
+
+#sticker {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-block: 0;
+margin-inline: auto;
+block-size: 40vw;
+inline-size: 40vw;
+background-color: var(--color-base);
+box-sizing: border-box;
+font-size: var(--font-size-l);
+font-weight: var(--font-weight-bd);
+line-height: 1;
+clip-path: shape(from 50% 98.16%,line by -7.92% 1.84%,line by -6.96% -4.2%,line by -8.1% -0.7%,line by -5.32% -6.14%,line by -7.49% -3.16%,line by -3.16% -7.49%,line by -6.14% -5.32%,line by -0.7% -8.1%,line by -4.2% -6.96%,line to 1.84% 50%,line by -1.84% -7.92%,line by 4.2% -6.96%,line by 0.7% -8.1%,line by 6.14% -5.32%,line by 3.16% -7.49%,line by 7.49% -3.16%,line by 5.32% -6.14%,line by 8.1% -0.7%,line by 6.96% -4.2%,line to 50% 1.84%,line by 7.92% -1.84%,line by 6.96% 4.2%,line by 8.1% 0.7%,line by 5.32% 6.14%,line by 7.49% 3.16%,line by 3.16% 7.49%,line by 6.14% 5.32%,line by 0.7% 8.1%,line by 4.2% 6.96%,line to 98.16% 50%,line by 1.84% 7.92%,line by -4.2% 6.96%,line by -0.7% 8.1%,line by -6.14% 5.32%,line by -3.16% 7.49%,line by -7.49% 3.16%,line by -5.32% 6.14%,line by -8.1% 0.7%,line by -6.96% 4.2%,close);
+opacity: 0;
+transform: scale(0) rotate(0deg);
+animation: entrance 2.3s ease-out 1s forwards; }
+
+@keyframes entrance {
+0% {
+opacity: 0;
+transform: scale(0) rotate(0deg); }
+
+60% {
+opacity: 1;
+transform: scale(1.1) rotate(1085deg); }
+
+75% { transform: scale(1.1) rotate(1085deg); }
+
+100% {
+opacity: 1;
+transform: scale(1) rotate(1080deg); }
+}
+
+@media (min-width: 48em) {
+
+header h1,
+header h2 {
+font-size:  12cqi; }
+
+header #banner {
+rotate: 5deg;
+transition: rotate var(--animate-duration-faster) var(--animate-function); }
+
+header #banner:hover {
+rotate: 0deg; }
+
+#sticker {
+position: absolute;
+top: 0;
+left: 0;
+z-index: 1;
+margin-inline: 0;
+block-size: 15vw;
+inline-size: 15vw;
+font-size: 3cqi; }
+}
+
+
+
+
+/* BIOS   ---------------------------------------- */
+
+#bios {
+margin-trim: block;
+margin-block-end: var(--spacing-xl); }
+
+#bios article {
+margin-block-end: var(--spacing-l); }
+
+#bios article > * {
+margin-trim: block; }
+
+#bios article h3 {
+margin-block: 0 var(--spacing-s);  }
+
+#bios article svg {
+display: block;
+margin-block: var(--spacing-r);
+max-inline-size: 150px;  }
+
+#bios article img {
+margin-block-end: var(--spacing-r);
+border: 15px solid var(--color-base);
+border-radius: 25px;
+box-sizing: border-box; }
+
+@media (min-width: 48em) {
+
+#bios article {
+display: grid;
+grid-template-columns: var(--grid-12-col);
+gap: var(--grid-row-gap) var(--grid-column-gap); }
+
+#bios article > *:nth-child(1) {
+grid-column: 2 / 4; }
+
+#bios article > *:nth-child(2) {
+grid-column: 5 / 9; }
+
+#bios article > *:nth-child(3) {
+grid-column: 10 / 12; }
+
+#bios article img {
+margin-block-end: 0;
+rotate: -5deg;
+transition: rotate var(--animate-duration-faster) var(--animate-function); }
+
+#bios article:hover img {
+rotate: 0deg; }
+
+#bios article svg {
+margin-block: 0; }
+
+}
+
+
+/* BUTTONS   ---------------------------------------- */
+
+.btn,
+.btn:visited {
+inline-size: -moz-fit-content;
+inline-size: fit-content;
+margin-inline: auto;
+padding-block: 15px;
+padding-inline: var(--spacing-r);
+background-color: var(--color-button-background);
+border: none;
+box-shadow: none;
+border-radius: var(--border-radius-l);
+font-family: var(--font-family-default);
+font-size: var(--font-size-r);
+font-weight: var(--font-weight-m);
+line-height: 1;
+text-align: center;
+color: var(--color-button-text);
+cursor: pointer;
+touch-action: manipulation;
+-webkit-user-select: none;
+-moz-user-select: none;
+user-select: none;
+filter: brightness(1);
+transition: filter var(--animate-duration-faster) var(--animate-function); }
+
+.btn:hover {
+filter: brightness(.75); }
+
+.btn:active,
+.btn:focus-visible {
+filter: brightness(.5); }
+
+
+
+
+/* EPISODES  ---------------------------------------- */
+
+#episodes {
+margin-block-end: var(--spacing-xl); }
+
+#episodes article {
+margin-trim: block; }
+
+#episodes article p:nth-of-type(1) {
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto;
+block-size: 80px;
+inline-size: 80px;
+clip-path: circle(40%);
+background-color: var(--color-base);
+font-size: var(--font-size-xl);
+font-weight: var(--font-weight-bd);
+line-height: 1; }
+
+#episodes article h2 {
+margin-block: 0; }
+
+#episodes article audio {
+margin-block: 0 var(--spacing-r);
+inline-size: 90%; }
+
+#episodes-previous {
+margin-block-end: var(--spacing-xl); }
+
+@media (min-width: 64em) {
+
+#episodes {
+display: grid;
+grid-template-columns: var(--grid-12-col);
+gap: var(--spacing-l) var(--grid-column-gap); }
+
+#episodes article {
+grid-column: span 4; }
+
+#episodes-previous {
+margin-block-end: var(--spacing-l); }
+}
+
+
+
+
+
+/* FOOTER   ---------------------------------------- */
+
+footer {
+margin-trim: block;
+padding-block: var(--spacing-r);
+border-block-start: var(--border-width-l) solid var(--color-border); }
+
+footer > div {
+margin-trim: block;
+margin-block-end: var(--spacing-l); }
+
+footer h3 {
+margin-block-end: var(--spacing-s); }
+
+footer p {
+font-size: var(--font-size-s); }
+
+footer svg {
+display: block;
+margin-block: var(--spacing-r) 0;
+max-inline-size: 150px; }
+
+footer + small {
+display: block;
+padding-block: var(--spacing-r); }
+
+@media (min-width: 64em) {
+
+footer {
+display: grid;
+grid-template-columns: var(--grid-12-col);
+gap: 0 var(--grid-column-gap); }
+
+footer > div {
+grid-column: span 4;
+margin-block-end: unset; }
+}
+
+[role="contentinfo"] {
+margin-block: var(--spacing-r);
+text-align: center; }
+
+
+
+
+/* GUESTS   ---------------------------------------- */
+
+#guests {
+margin-block-end: var(--spacing-xl);
+margin-trim: block; }
+
+#guests h2 {
+margin-block: 0;
+padding-block-start: var(--spacing-r);
+border-block-start: var(--border-width-l) solid var(--color-border); }
+
+#guests li {
+font-size: var(--font-size-m); }
+
+#guests li:before {
+content: ""; }
+
+@media (min-width: 48em) {
+
+#guests ul {
+display: grid;
+grid-template-columns: var(--grid-12-col);
+gap: var(--grid-row-gap) var(--grid-column-gap); }
+
+#guests li {
+grid-column: span 4; }
+}
+
+
+/* INTRODUCTION   ---------------------------------------- */
+
+#introduction {
+margin-block-end: var(--spacing-l);
+margin-trim: block; }
+
+#introduction h1 {
+margin-block-end: 0; }
+
+#introduction p {
+font-size: var(--font-size-m); }
+
+@media (min-width: 48em) {
+
+#introduction {
+margin-block-end: var(--spacing-xl); }
+}
+
+
+
+/* NAV   ---------------------------------------- */
+
+nav {
+display: flex;
+gap: var(--spacing-s);
+justify-content: center;
+font-size: var(--font-size-r);
+font-weight: var(--font-weight-m); }
+
+nav a {
+position: relative;
+display: inline-block;
+margin-block-end: var(--spacing-r);
+padding-bottom: 2px;
+text-align: center;
+text-decoration: none;
+transition: opacity var(--animate-duration-fast) ease-in-out; }
+
+nav a::after {
+content: '';
+position: absolute;
+left: 50%;
+bottom: 0;
+width: 100%;
+height: var(--border-width-l);
+transform: translateX(-50%) scaleX(0);
+transform-origin: center;
+background-color: currentColor;
+transition: transform .5s ease; }
+
+nav a:hover::after,
+nav a:focus-visible::after {
+transform: translateX(-50%) scaleX(1); }
+
+nav a:focus-visible::after {
+background-color: var(--color-accent); }
+
+@media (min-width: 48em) {
+
+nav {
+gap: var(--spacing-r);
+font-size: var(--font-size-m); }
+}
+
+
+
+
+/* PLAYERS   ---------------------------------------- */
+
+#players {
+margin-block-end: var(--spacing-l); }
+
+#players > * {
+margin-block: 0 var(--spacing-r); }
+
+#players ul {
+display: flex; }
+
+#players li {
+margin-inline: 5px; }
+
+#players li:before {
+content: ""; }
+
+#players li a {
+display: block;
+inline-size: 48px;
+scale: 1;
+transition: scale var(--animate-duration-faster) ease-in-out; }
+
+#players li a:hover {
+scale: var(--scale-up); }
+
+@media (min-width: 48em) {
+
+#players {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: var(--spacing-r); }
+
+#players > * {
+margin-block: 0); }
+}
+
+
+/* SPONSOR */
+
+@media (min-width: 64em) {
+
+#sponsor {
+display: grid;
+grid-template-columns: var(--grid-12-col);
+gap: var(--grid-row-gap) var(--grid-column-gap); }
+
+#sponsor > *:nth-child(1) {
+grid-column: 1 / 6; }
+
+#sponsor > *:nth-child(2) {
+grid-column: 7 / -1; }
+}</style>
+
+<meta name="msapplication-TileColor" content="#fde800">
+<meta name="theme-color" content="#fde800">
+<meta name="robots" content="index, follow, noodp" />
+<meta property="og:locale" content="en_GB"/>
+<meta property="og:type" content="article" />
+<meta name="apple-mobile-web-app-title" content="Unfinished" />
+
+<meta name="author" content="Andy Clarke" />
+<meta name="description" content="Unfinished Business podcast with Andy Clarke and Richard Rutter" />
+<meta property="og:title" content="Unfinished Business"/>
+<meta property="og:site_name" content="Unfinished Business"/>
+<meta property="article:author" content="Andy Clarke" />
+<meta property="og:description" content="Unfinished Business podcast with Andy Clarke and Richard Rutter" />
+<meta property="og:url" content="https://unfinished.bz"/>
+<link rel="canonical" href="https://unfinished.bz">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+</head>
+
+<body id="unfinished-bz">
+
+<header>
+<p>Andy Clarke and Richard Rutter have</p>
+<h2><a href="/">Unfinished Business</a></h2>
+<nav>
+<a href="about.html">About</a> •
+<a href="episodes.html">Episodes</a> •
+<a href="https://patreon.com/unfinishedbz">Patreon</a> •
+<a href="sponsor.html">Sponsor</a>
+</nav>
+</header>
+
+<div id="introduction">
+<h1>About Unfinished Business</h1>
+<p>Andy Clarke and Richard Rutter have both co-founded and run design agencies and have over 50 years experience between them working in creative industries. Their work has taken them on different paths, but they&#8217;ve come together to discuss business, clients, creativity and more, because they both have Unfinished Business.</p>
+</div><!-- introduction -->
+
+<section id="bios">
+
+<article id="andy">
+<img src="/img/img-andy.webp" alt="Andy Clarke">
+<div>
+<h3>Andy Clarke</h3>
+<p>Andy&#8217;s a well-known web designer at  <a href="https://stuffandnonsense.co.uk">Stuff &#38; Nonsense</a>. He&#8217;s written several popular books on art direction and website design including Transcending CSS, Hardboiled Web Design, and Art Direction for the Web.</p>
+</div>
+<a href="https://stuffandnonsense.co.uk" title="Stuff &#38; Nonsense"><span data-visibility="hidden">Stuff &#38; Nonsense</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 58"><g fill="none" fill-rule="nonzero"><path fill="#FDF9F2" d="m55.515 36.544-1.118 5.987c-3.365-.851-7.621-2.107-10.417-4.696 3.264-.293 10.652-1.184 11.462-1.282l.073-.01Zm-10.52-5.028c.864-.03 1.39-.038 1.879-.042l.363-.002c.549-.002 1.143-.004 2.21-.029 1.423.072 4.165 4.961 4.11 4.925-.904.115-3.097.434-5.443.726l-.786.097c-2.103.251-4.226.462-5.57.47-3.07.018-7.38-.381-11.082-1.906-5.837-2.404-6.84-3.84-7.331-4.247-.042-.036-.068-.032-.087-.004 0-.045.007-.117.168-.128.31-.021 7.817 1.502 21.568.14ZM24.181 8.518c.605.11 3.442.953 6.389 1.834l.655.196.549.164c3.19.954 6.17 1.84 6.22 1.767-.469.678-.1 2.248.323 2.954 1.124 1.87 2.574 3.573 4.53 4.72l.08.055a4.402 4.402 0 0 0-.409-.474c-2.057-2.456-3.794-4.738-3.489-6.439.41-2.29 4.352-3.604 6.536-3.929l.028-.082c2.36-.187 4.734.14 6.955.959.004.002 0 .014 0 .014 1.79.652 2.973 1.665 3.168 2.703.117.619-.113 1.22-.642 1.681-.492.43-2.03 2.049-1.147 4.8.659 2.049 2.16 3.513 4.462 4.35l-2.147 12.022-2.13.37s-3.34-4.347-3.565-4.852c.08-.02.1-.085.03-.094-5.245-.722-5.208-3.725-3.749-5.165.03-.012.047-.033.047-.05 0-.018-.012-.032-.042-.035-5.037-.596-5.584-3.294-4.282-4.76l.164-.013c-6.637.588-11.625-4.616-10.665-6.192-6.31-1.19-13.75-3.277-15.434-5.157-.075-.226-.132-.437-.1-.618.024-.13.113-.27.213-.389.161-.194.718-.524.912-.595 1.961-.716 4.663-.086 6.54.255Zm-7.934 16.481c4.648.902 6.77 1.18 8.866 1.295l.406.02c.204.01.408.018.617.026 6.316.324 10.008-.073 11.278-.304 2.764.058 5.767.101 9.034.15-1.739 1.979-.412 3.92 1.561 4.924-.313.003-.688.005-1.116.005h-.681c-5.987-.01-19.58-.262-23.735-1.287-4.763-1.174-7.828-3.882-8.196-5.275.058-.092.985.255 1.966.446Zm-8.989-7.307c.447.119 10.006 3.387 23.602 2.917.59-.027 1.37-.036 2.187-.037h.822c1.098.001 2.17.008 2.85-.01 1.677.685 3.772 1.109 5.697.717-1.865 1.584.25 3.712 2.037 4.598.003 0-5.777-.116-12.344-.515l-.776-.048a229.931 229.931 0 0 1-3.533-.25L27.018 25c-4.299-.358-8.394-.852-10.932-1.527-4.196-1.115-8.533-4.958-9.24-5.603-.004.002-.408-.493.413-.178Zm9.556-7.195c1.008 1.308 13.583 4.52 15.065 4.659-.535 1.305 1.595 3.902 4.33 5.313-7.533.024-20.695-1.524-29.411-4.343-3.246-1.05-5.582-3.126-6.69-4.952l-.093-.314a.387.387 0 0 1 .259-.48l.595-.17c3.968-1.214 9.446-.859 15.945.287Zm77.67 26.047s8.079.981 11.534 1.29c-2.794 2.59-7.051 3.846-10.415 4.697l-1.12-5.987Zm32.088-5.168c.162.011.17.083.17.128-.02-.028-.045-.032-.087.004-.492.407-1.496 1.843-7.33 4.247-3.704 1.525-8.013 1.924-11.082 1.907-3.025-.02-9.994-1.063-11.8-1.294-.055.036 2.687-4.853 4.109-4.925 1.067.025 1.661.027 2.21.03l.363.001c.488.004 1.015.013 1.88.042 13.751 1.362 21.259-.161 21.567-.14Zm5.785-23.113c.194.071.751.401.913.595.1.12.188.258.212.39.031.18-.025.391-.1.617-1.684 1.88-9.125 3.967-15.434 5.157.952 1.563-3.944 6.693-10.498 6.206l-.074-.081c1.392 1.448.918 4.234-4.21 4.84-.03.003-.043.017-.043.033 0 .02.017.04.046.052 1.46 1.44 1.498 4.443-3.749 5.165-.068.01-.05.074.031.094-.224.505-3.564 4.852-3.564 4.852l-2.13-.37-2.155-12.022c2.31-.838 3.812-2.302 4.47-4.352.883-2.75-.654-4.368-1.147-4.799-.528-.462-.757-1.062-.642-1.68.195-1.04 1.378-2.052 3.169-2.704 0 0-.005-.012-.001-.014a16.371 16.371 0 0 1 6.956-.96l.027.083c2.184.325 6.126 1.64 6.536 3.93.306 1.7-1.432 3.982-3.489 6.438a4.428 4.428 0 0 0-.407.472l.078-.052c1.956-1.147 3.405-2.85 4.53-4.72.424-.706.791-2.276.323-2.954.05.073 3.03-.813 6.22-1.767l.548-.164.656-.196c2.946-.88 5.783-1.724 6.388-1.834 1.878-.34 4.58-.971 6.54-.255Zm3.36 16.29c-.368 1.393-3.433 4.1-8.195 5.275-4.157 1.025-17.749 1.277-23.736 1.287h-.68c-.428 0-.804-.002-1.117-.005 1.974-1.004 3.301-2.945 1.56-4.924 3.268-.049 6.271-.092 9.035-.15 1.27.23 4.963.628 11.279.304 2.498-.088 4.491-.293 9.888-1.341.981-.19 1.908-.538 1.966-.446Zm7.437-6.683c-.706.645-5.045 4.488-9.24 5.603-2.539.675-6.634 1.169-10.933 1.527l-.783.063c-.393.031-.786.061-1.18.09l-.787.057c-.524.036-1.047.071-1.566.104l-.776.048c-6.567.399-12.346.515-12.344.515 1.788-.886 3.903-3.014 2.037-4.598 1.926.392 4.02-.032 5.697-.717.681.018 1.752.011 2.85.01h.822c.816.001 1.596.01 2.187.037 13.596.47 23.156-2.798 23.602-2.917.821-.315.417.18.414.178Zm5.975-7.66.594.17c.205.062.32.276.26.48l-.094.314c-1.107 1.826-3.444 3.902-6.69 4.952-8.715 2.82-21.878 4.367-29.41 4.343 2.735-1.411 4.865-4.008 4.33-5.313 1.482-.14 14.057-3.351 15.065-4.659 6.499-1.146 11.98-1.501 15.945-.287Z"/><path fill="#713F26" d="M49.448 31.444c.38.01.752-.025 1.1-.112.082-.021.1-.086.03-.094-5.245-.723-5.208-3.726-3.749-5.165.03-.013.047-.034.047-.05v-.002c0-.016.224-.222.195-.227-5.128-.604-5.837-3.106-4.444-4.553.087-.062.146-.121.085-.118-6.591.344-11.361-4.621-10.401-6.198-6.337-1.195-14.076-3.197-15.715-5.084l.22.657c1.399 2.222 13.11 4.812 14.591 4.95-.534 1.307 1.236 3.256 3.971 4.669-7.532.022-19.654-1.494-28.37-4.315-3.246-1.05-5.792-2.802-6.9-4.628.375 1.263 2.144 4.04 6.173 5.503.356.129 1.665.506 2.039.604 5.428 1.61 15.562 2.91 22.416 3.382 2.449.168 4.58.163 5.942.127 1.408.527 2.972.92 4.834.954-.839 1.673-.332 2.812 1.455 3.698.004 0 .085.043.089.044-8.982-.199-19.675-.57-27.135-2.554-4.196-1.115-8.368-4.418-9.075-5.061.66 1.386 4.034 3.981 7.211 5.322 6.233 2.634 15.441 2.717 31.849 2.957-1.288 1.541-.867 3.646 1.107 4.65-4.388.045-19.466-.38-24.122-1.528-4.761-1.174-8.24-3.325-8.609-4.718-.409.642 1.807 2.416 2.111 2.645 1.622 1.216 3.994 2.454 5.867 2.897 4.364 1.035 15.107 1.62 27.187 1.347l.001.001Zm-9.755-14.739c.172.243 2.246 2.79 2.805 3.253.25.205.59.327.138-.214-2.058-2.455-3.756-4.7-3.45-6.4.41-2.29 4.194-3.652 6.38-3.978l.032-.095c-2.18.229-7.288 1.418-7.197 4.194.04 1.17.614 2.285 1.292 3.24Zm5.216 21.196c3.456-.31 7.39-.848 8.705-1.017 1.11-.091-1.16-.568-1.16-.568-1.807.231-7.873.907-10.898.925-3.07.017-6.975-.369-10.678-1.893-5.836-2.404-7.042-3.433-7.533-3.84-.075-.063-.115-.015-.06.088.293.754 4.202 3.326 7.138 4.392 3.764 1.367 7.684 2.172 10.752 2.154.256-.002.684.026 1 .01 1.044.008 1.776.143 2.1.315.392.207 5.298 4.024 10.531 4.925l.251-.957c-3.393-.85-7.299-1.895-10.148-4.534Z"/><path fill="#724026" d="M100.551 31.444c-.37.014-.74-.024-1.1-.112-.08-.021-.1-.085-.03-.094 5.247-.723 5.208-3.726 3.75-5.165-.03-.013-.047-.034-.047-.05v-.002c0-.016-.225-.222-.195-.227 5.129-.604 5.837-3.106 4.443-4.553-.087-.062-.146-.121-.084-.118 6.591.344 11.361-4.621 10.4-6.197 6.338-1.196 14.077-3.198 15.716-5.085l-.22.657c-1.4 2.222-13.11 4.812-14.592 4.95.535 1.307-1.235 3.256-3.971 4.669 7.533.022 19.655-1.494 28.371-4.315 3.244-1.05 5.791-2.802 6.898-4.628-.372 1.263-2.142 4.04-6.171 5.503-.356.129-1.665.506-2.04.604-5.427 1.61-15.562 2.91-22.415 3.382a63.993 63.993 0 0 1-5.941.127c-1.41.528-2.972.92-4.835.954.839 1.673.333 2.812-1.456 3.698-.004 0-.083.043-.088.044 8.981-.199 19.674-.57 27.135-2.554 4.196-1.115 8.369-4.418 9.075-5.061-.66 1.386-4.034 3.981-7.212 5.322-6.233 2.634-15.44 2.717-31.848 2.957 1.287 1.541.866 3.646-1.106 4.65 4.386.045 19.465-.38 24.12-1.528 4.762-1.174 8.24-3.325 8.61-4.718.41.642-1.806 2.416-2.112 2.645-1.62 1.216-3.993 2.454-5.867 2.897-4.364 1.035-15.106 1.62-27.187 1.347v.001Zm9.756-14.738c-.173.242-2.246 2.789-2.805 3.252-.249.205-.591.327-.138-.214 2.058-2.455 3.755-4.7 3.45-6.4-.41-2.29-4.195-3.652-6.38-3.978l-.033-.095c2.18.229 7.288 1.418 7.197 4.194-.038 1.17-.614 2.285-1.291 3.24ZM105.09 37.9c-3.455-.31-7.39-.848-8.703-1.017-1.112-.091 1.16-.568 1.16-.568 1.805.231 7.872.907 10.897.925 3.07.018 6.975-.369 10.678-1.893 5.836-2.404 7.041-3.433 7.533-3.84.075-.063.114-.015.059.088-.292.754-4.201 3.326-7.137 4.392-3.764 1.367-7.683 2.172-10.753 2.154-.255-.002-.684.026-.999.01-1.044.008-1.776.143-2.1.315-.393.208-5.298 4.024-10.532 4.925l-.25-.957c3.393-.85 7.3-1.895 10.147-4.534Z"/><path fill="#734026" d="m72.263 57.384-18.7-8.713a8.463 8.463 0 0 1-4.895-8.094L50.42 9.725a7.988 7.988 0 0 1 7.044-7.596L74.053.061l.016-.003a8.07 8.07 0 0 1 1.932 0l.017.003 16.588 2.068a7.988 7.988 0 0 1 7.044 7.596l1.751 30.853.003.074a8.464 8.464 0 0 1-4.897 8.02l-18.7 8.712a6.552 6.552 0 0 1-5.544 0Z"/><path fill="#FDF9F2" d="M75.036 54.873c-.5-.001-.993-.11-1.446-.322l-18.7-8.712a5.343 5.343 0 0 1-3.092-5.086L53.55 9.882a4.872 4.872 0 0 1 4.303-4.65l16.588-2.07c.394-.047.79-.048 1.183 0l16.597 2.07a4.87 4.87 0 0 1 4.3 4.648l1.751 30.872v.022a5.343 5.343 0 0 1-3.092 5.065L76.483 54.55c-.46.215-.954.322-1.447.322ZM54.303 40.882a2.849 2.849 0 0 0 1.649 2.69l18.698 8.712a.911.911 0 0 0 .772 0L94.12 43.57a2.849 2.849 0 0 0 1.649-2.688L94.018 10.01l-.001-.02a2.378 2.378 0 0 0-2.102-2.277l-16.597-2.07a2.38 2.38 0 0 0-.57 0L58.162 7.716a2.38 2.38 0 0 0-2.108 2.298L54.302 40.88Z"/><path fill="#FDF9F2" d="m78.074 22.522.101 18.28-2.7-.004-.002-27.316L86.785 31.89l-.42-17.702 2.555.003.801 27.402-11.647-19.071Zm-16.77 18.424c-.365 0-.73 0-1.052-.122l.092-2.846c.326.15.684.218 1.042.203 3.188.003 5.528-2.21 5.585-5.395.084-4.581-5.48-6.132-5.31-11.804.13-4.322 3.548-7.18 7.722-7.176h.192l-.032 2.418h-.193c-2.732-.003-5.011 1.882-5.082 4.76-.103 4.212 5.449 6.023 5.376 11.804-.06 4.793-3.47 8.162-8.34 8.158"/></g></svg></a>
+</article>
+
+<article id="rich">
+<img src="/img/img-rich.webp" alt="Richard Rutter">
+<div>
+<h3>Richard Rutter</h3>
+<p>Richard&#8217;s a designer, author and speaker living by the sea in Brighton, UK. He&#8217;s co-founder of <a href="https://clearleft.com">Clearleft</a>, a digital design consultancy. Richard is the author of the critically acclaimed Web Typography.</p>
+</div>
+<a href="https://clearleft.com" title="Clearleft"><span data-visibility="hidden">Clearleft</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152 55"><g fill="none" fill-rule="evenodd"><path fill="#734026" fill-rule="nonzero" d="M151.001 25.2v5.4h-2.4c-5.5 0-8.6-3.3-8.6-9.3v-6.8h-7.4v16.1h-5.6V14.5h-3.1l-.1-4.6h3.1v-.6c0-6 3-9.3 8.6-9.3h2.4v5.4h-2.4c-2 0-2.9 1.3-2.9 4v.6h7.4V6l5.6-3.6v7.4h4v4.6h-4v6.8c0 2.7 1 4 2.9 4h2.5Zm-75.5-15.6h5.6v21h-5.6v-2c-1.7 1.7-4 2.7-6.4 2.6-5.7 0-10.1-4.8-10.1-11s4.4-11 10.1-11c2.4-.1 4.7.8 6.4 2.5V9.6Zm0 10.5c0-3.5-2.4-6.1-5.6-6.1-3.2 0-5.6 2.6-5.6 6.1 0 3.5 2.3 6.1 5.6 6.1s5.6-2.5 5.6-6.1Zm12.9-8.7V9.6h-5.4v21h5.6v-9.5c0-4.5.8-6.8 5-6.8h1.5V8.9h-.2c-3 0-5.2.9-6.5 2.5Zm8.1 19.1h5.6V.1h-5.6v30.4Zm-81-24.7c3.2 0 6.1 1.8 7.6 4.5l.1.2.2-.1 4.8-3.1.3-.1-.1-.2c-2.9-4.3-7.7-6.9-12.8-6.9-8.5-.1-15.5 6.7-15.6 15.1v.3c-.1 8.5 6.8 15.4 15.3 15.5h.3c5.1.1 9.9-2.5 12.8-6.7l.1-.2-5.2-3.4-.1.2c-1.6 2.7-4.5 4.4-7.6 4.5-5.2 0-9.2-4.3-9.2-9.8 0-4.8 3.4-9.8 9.1-9.8Zm14.6 24.7h5.6V.1h-5.6v30.4Zm94-10.5c0 .6 0 1.1-.1 1.7v.5h-14.8c.5 2.5 2.8 4.3 5.4 4.1 2 0 3.9-.7 5.5-2l.4-.3 2.8 4-.3.3c-2.4 2-5.5 3.1-8.6 3-6.4 0-10.8-4.6-10.8-11.1s4.3-11.1 10.6-11.1c5.7-.2 9.8 4.4 9.9 10.9Zm-5.7-2.2c-.6-2.5-2.2-3.9-4.5-3.9-2.4-.1-4.4 1.6-4.7 3.9h9.2Zm-60.7 2.2c0 .6 0 1.1-.1 1.7v.5h-14.8c.5 2.5 2.8 4.3 5.4 4.1 2 0 3.9-.7 5.5-2l.4-.3 2.8 4-.3.3c-2.4 2-5.5 3.1-8.6 3-6.4 0-10.8-4.6-10.8-11.1s4.3-11.3 10.5-11.3c5.9 0 10 4.6 10 11.1Zm-5.6-2.2c-.6-2.5-2.2-3.9-4.5-3.9-2.4-.1-4.4 1.6-4.7 3.9h9.2Z"/><path stroke="#FDF9F2" stroke-dasharray="150" stroke-width="13" d="M-2.599 47.1s50.4-6.3 81.9-6c31.5.3 77.1 4.6 77.1 4.6"/></g></svg></a>
+</article>
+
+</section>
+
+
+
+<section id="guests">
+<h2>Our guests</h2>
+
+<ul>
+<li><a href="javascript:void(0)">Paul Boag</a></li>
+<li><a href="javascript:void(0)">Count Binface</a></li>
+<li><a href="javascript:void(0)">Brad Frost</a></li>
+<li><a href="javascript:void(0)">Jon Hicks</a></li>
+</ul>
+
+</section>
+<div id="players">
+<p>Listen in your favourite app</p>
+<ul>
+<li><a href="javascript:void(0)" title="Apple Podcasts"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none" fill-rule="evenodd"><circle cx="24" cy="24" r="24" fill="#FDF9F2"/><path fill="#734026" fill-rule="nonzero" d="M26.749 27.297c-.559-.604-1.57-.982-2.749-.982-1.178 0-2.19.378-2.749.982-.302.317-.468.634-.513 1.102-.09.876-.046 1.647.06 2.87.106 1.163.287 2.719.544 4.304.166 1.118.317 1.722.438 2.16.211.71.997 1.33 2.22 1.33 1.223 0 2.009-.62 2.22-1.33.121-.438.272-1.042.438-2.16.257-1.585.438-3.141.544-4.304.106-1.223.15-1.994.06-2.87-.06-.468-.211-.785-.513-1.102Zm-5.86-5.362A3.107 3.107 0 0 0 24 25.046a3.107 3.107 0 0 0 3.111-3.11A3.117 3.117 0 0 0 24 18.823a3.117 3.117 0 0 0-3.111 3.111Zm3.08-12.264c-7.279.015-13.245 5.92-13.335 13.185-.06 5.906 3.7 10.935 8.94 12.793a.181.181 0 0 0 .242-.196c-.075-.469-.136-.922-.196-1.375a.43.43 0 0 0-.272-.362c-4.153-1.813-7.053-5.981-6.993-10.8.06-6.327 5.226-11.493 11.554-11.538 6.465-.045 11.75 5.195 11.75 11.66 0 4.772-2.884 8.88-7.007 10.678-.151.06-.242.211-.272.362-.06.453-.12.906-.196 1.375-.015.136.12.241.241.196 5.196-1.843 8.941-6.797 8.941-12.611 0-7.386-6.01-13.397-13.396-13.367Zm-.24 6.132c4.122-.166 7.52 3.142 7.52 7.235a7.19 7.19 0 0 1-2.28 5.27.55.55 0 0 0-.181.439c.03.498.015.981-.015 1.525-.015.151.15.242.272.166a8.938 8.938 0 0 0 3.911-7.4c0-5.06-4.198-9.153-9.303-8.942-4.743.182-8.534 4.078-8.594 8.82-.045 3.127 1.525 5.876 3.912 7.522.12.076.287-.015.271-.166a12.942 12.942 0 0 1-.015-1.525.59.59 0 0 0-.166-.438 7.149 7.149 0 0 1-2.295-5.468c.105-3.79 3.156-6.902 6.962-7.038Z"/></g></svg><span data-visibility="hidden">Apple Podcasts</span></a></li>
+<li><a href="javascript:void(0)" title="Castro"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none" fill-rule="evenodd"><circle cx="24" cy="24" r="24" fill="#FDF9F2"/><circle cx="24" cy="24.457" r="16.72" fill="#734026" fill-rule="nonzero"/><path fill="#FDF9F2" d="m31.174 34.246-2.888-3.982c1.81-1.338 2.995-3.466 2.995-5.883a7.296 7.296 0 0 0-7.296-7.28c-4.013 0-7.281 3.268-7.281 7.28a7.282 7.282 0 0 0 3.01 5.898l-2.888 3.998a12.218 12.218 0 0 1-5.062-9.896c0-6.748 5.472-12.205 12.22-12.205 6.75 0 12.222 5.457 12.222 12.205 0 4.059-1.992 7.646-5.032 9.865Zm-7.159-12.813a2.935 2.935 0 1 1-.003 5.87 2.935 2.935 0 0 1 .003-5.87Z"/></g></svg><span data-visibility="hidden">Castro</span></a></li>
+<li><a href="javascript:void(0)" title="Overcast"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none" fill-rule="evenodd"><circle cx="24" cy="24" r="24" fill="#FDF9F2"/><circle cx="24" cy="24.457" r="14.44" fill="#FDF9F2" fill-rule="nonzero"/><path fill="#734026" d="M24 40.417c-8.816 0-15.96-7.144-15.96-15.96S15.184 8.497 24 8.497s15.96 7.144 15.96 15.96-7.144 15.96-15.96 15.96Zm0-6.277 1.231-1.231L24 28.319l-1.231 4.59L24 34.139Zm-1.52-.122-.608 2.235 1.429-1.414-.821-.82Zm3.04 0-.806.821 1.414 1.414-.608-2.235Zm1.11 4.15L24 35.538l-2.63 2.63h.016c1.732.334 3.496.334 5.213 0h.03ZM24 10.504v-.015c-7.722 0-13.954 6.247-13.954 13.968 0 5.944 3.77 11.248 9.394 13.194l2.964-11.08a2.649 2.649 0 0 1-.517-3.725 2.63 2.63 0 0 1 3.709-.517 2.65 2.65 0 0 1 0 4.241l2.98 11.081h-.016c7.28-2.508 11.157-10.458 8.649-17.754A13.984 13.984 0 0 0 24 10.49v.015Z"/><path fill="#734026" d="m33.12 31.373-.015.016a1.003 1.003 0 0 1-1.383.182h.015a.93.93 0 0 1-.243-1.292l.03-.03.046-.076a10.263 10.263 0 0 0-.092-11.598l.046.091a.906.906 0 0 1 .167-1.292c.015-.015.03-.03.046-.03v-.015a1.024 1.024 0 0 1 1.383.212 12.072 12.072 0 0 1 0 13.832Zm-4.849-2.614h-.015a1.14 1.14 0 0 1 .06-1.52 4.358 4.358 0 0 0 0-5.563 1.16 1.16 0 0 1-.06-1.535h.015a.939.939 0 0 1 1.323-.107c.03.015.06.046.076.076l.045.03a6.563 6.563 0 0 1-.091 8.71l.046-.045a.958.958 0 0 1-1.353.03c0-.03-.03-.06-.046-.076Zm-8.542 0a.94.94 0 0 1-1.323.122c-.03-.03-.06-.046-.076-.076l-.045-.046a6.563 6.563 0 0 1 .091-8.71l-.046.061a.958.958 0 0 1 1.353-.03c0 .03.03.045.046.06h.015a1.16 1.16 0 0 1-.06 1.536 4.358 4.358 0 0 0 0 5.563c.41.426.425 1.08.06 1.52h-.015Zm-3.466 2.827a1.024 1.024 0 0 1-1.383-.213 12.072 12.072 0 0 1 0-13.832l.015-.015c.32-.425.943-.501 1.383-.182h-.015a.914.914 0 0 1 .228 1.292c0 .015 0 .015-.015.03l-.046.076a10.263 10.263 0 0 0 .092 11.598l-.046-.091a.906.906 0 0 1-.213 1.322v.015Z"/></g></svg><span data-visibility="hidden">Overcast</span></a></li>
+<li><a href="javascript:void(0)" title="Pocketcasts"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none" fill-rule="evenodd"><circle cx="24" cy="24" r="24" fill="#FDF9F2"/><path fill="#734026" d="M8.633 24.29c0-8.39 6.81-15.2 15.2-15.2s15.2 6.81 15.2 15.2h-3.8c0-6.293-5.107-11.4-11.4-11.4s-11.4 5.107-11.4 11.4 5.107 11.4 11.4 11.4v3.8c-8.39 0-15.2-6.81-15.2-15.2Zm15.2 9.12c-5.031 0-9.12-4.089-9.12-9.12 0-5.031 4.089-9.12 9.12-9.12 5.031 0 9.12 4.089 9.12 9.12h-3.314a5.806 5.806 0 1 0-5.806 5.807v3.313Z"/></g></svg><span data-visibility="hidden">Pocketcasts</span></a></li>
+<li><a href="javascript:void(0)" title="RSS"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="none" fill-rule="evenodd"><circle cx="24" cy="24" r="24" fill="#FDF9F2"/><path fill="#734026" fill-rule="nonzero" d="M12.84 28.537c4.195 0 7.6 3.405 7.6 7.6h-7.6v-7.6Z"/><path stroke="#734026" stroke-width="4.531" d="M12.46 21.697c8.178 0 14.82 6.643 14.82 14.82m-14.82-23.94c13.224 0 23.94 10.716 23.94 23.94"/></g></svg><span data-visibility="hidden">RSS</span></a></li>
+</ul>
+<p><a href="https://patreon.com/unfinishedbz">Support us on Patreon</a></p>
+</div>
+<div role="contentinfo">
+<small>&#169; 2025&#8211;now. All Rights Reserved.<br>
+<a href="https://stuffandnonsense.co.uk">Andy Clarke</a> and <a href="https://clagnut.com">Richard Rutter</a></small>
+</div><!-- contentinfo -->
+
+</body>
+</html>
