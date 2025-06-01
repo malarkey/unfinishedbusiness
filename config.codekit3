@@ -17,6 +17,14 @@
       "oAP" : "\/_partials\/_copyright.html",
       "oF" : 0
     },
+    "\/_partials\/_episodes-previous.kit" : {
+      "cB" : 0,
+      "ft" : 2048,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/_partials\/_episodes-previous.html",
+      "oF" : 0
+    },
     "\/_partials\/_episodes.kit" : {
       "cB" : 0,
       "ft" : 2048,
@@ -141,6 +149,32 @@
       "oAP" : "\/fonts\/Bricolage-Grotesque-Variable.woff2",
       "oF" : 0
     },
+    "\/img\/artwork-alt.png" : {
+      "ft" : 32768,
+      "iS" : 190331,
+      "oA" : 0,
+      "oAP" : "\/img\/artwork-alt.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
+    "\/img\/artwork.png" : {
+      "ft" : 32768,
+      "iS" : 188014,
+      "oA" : 0,
+      "oAP" : "\/img\/artwork.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
     "\/img\/banner-shading.svg" : {
       "ft" : 2097152,
       "miP" : 0,
@@ -161,6 +195,19 @@
       "plM" : 52780316221407,
       "prP" : 0
     },
+    "\/img\/icon-alt.png" : {
+      "ft" : 32768,
+      "iS" : 32012,
+      "oA" : 0,
+      "oAP" : "\/img\/icon-alt.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
     "\/img\/icon-apple-podcasts.svg" : {
       "ft" : 2097152,
       "miP" : 0,
@@ -174,7 +221,7 @@
     "\/img\/icon-castro.svg" : {
       "ft" : 2097152,
       "miP" : 0,
-      "oA" : 1,
+      "oA" : 2,
       "oAP" : "\/img\/icon-castro.svg",
       "oF" : 0,
       "opt" : 0,
