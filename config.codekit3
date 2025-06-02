@@ -442,6 +442,22 @@
       "oAP" : "\/sponsor.html",
       "oF" : 0
     },
+    "\/thankyou.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/thankyou.html",
+      "oF" : 0
+    },
+    "\/thankyou.kit" : {
+      "cB" : 0,
+      "ft" : 2048,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/thankyou.html",
+      "oF" : 0
+    },
     "\/web-app-manifest-192x192.png" : {
       "ft" : 32768,
       "iS" : 3082,
