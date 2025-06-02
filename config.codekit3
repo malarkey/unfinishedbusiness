@@ -113,6 +113,19 @@
       "oAP" : "\/about.html",
       "oF" : 0
     },
+    "\/apple-touch-icon.png" : {
+      "ft" : 32768,
+      "iS" : 2676,
+      "oA" : 0,
+      "oAP" : "\/apple-touch-icon.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
     "\/css\/styles.css" : {
       "aP" : 1,
       "bl" : 0,
@@ -139,6 +152,61 @@
       "hM" : 0,
       "oA" : 0,
       "oAP" : "\/episodes.html",
+      "oF" : 0
+    },
+    "\/episodes\/unfinished-episode-129.mp3" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/episodes\/unfinished-episode-129.mp3",
+      "oF" : 0
+    },
+    "\/favicon-96x96.png" : {
+      "ft" : 32768,
+      "iS" : 1302,
+      "oA" : 0,
+      "oAP" : "\/favicon-96x96.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
+    "\/favicon.ico" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/favicon.ico",
+      "oF" : 0
+    },
+    "\/favicon.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/favicon.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/files\/intro-music.wav" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/files\/intro-music.wav",
+      "oF" : 0
+    },
+    "\/files\/unfinished-business.sketch" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/files\/unfinished-business.sketch",
       "oF" : 0
     },
     "\/fonts\/Bricolage-Grotesque-Variable.woff2" : {
@@ -313,6 +381,17 @@
       "plM" : 52780316221407,
       "prP" : 0
     },
+    "\/img\/share.webp" : {
+      "ft" : 8388608,
+      "iS" : 23444,
+      "oA" : 0,
+      "oAP" : "\/img\/share.webp",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "ou" : "lpckwebp-default",
+      "rq" : 75
+    },
     "\/img\/sticker.svg" : {
       "ft" : 2097152,
       "miP" : 0,
@@ -339,6 +418,14 @@
       "oAP" : "\/index.html",
       "oF" : 0
     },
+    "\/site.webmanifest" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/site.webmanifest",
+      "oF" : 0
+    },
     "\/sponsor.html" : {
       "cB" : 0,
       "ft" : 8192,
@@ -354,6 +441,32 @@
       "oA" : 0,
       "oAP" : "\/sponsor.html",
       "oF" : 0
+    },
+    "\/web-app-manifest-192x192.png" : {
+      "ft" : 32768,
+      "iS" : 3082,
+      "oA" : 0,
+      "oAP" : "\/web-app-manifest-192x192.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
+    "\/web-app-manifest-512x512.png" : {
+      "ft" : 32768,
+      "iS" : 13747,
+      "oA" : 0,
+      "oAP" : "\/web-app-manifest-512x512.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
     }
   },
   "hooks" : [
@@ -366,7 +479,7 @@
     "creationDate" : 769515808.74679601,
     "displayValue" : "unfinishedbusiness-website",
     "displayValueWasSetByUser" : 0,
-    "iconImageName" : "brackets-pink",
+    "iconImageName" : "\/apple-touch-icon.png",
     "iconImageWasSetByUser" : 0
   },
   "projectSettings" : {
