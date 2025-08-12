@@ -1,43 +1,215 @@
 <section id="episodes">
 
+<!-- https://css-tricks.com/lets-create-a-custom-audio-player/ -->
+
+<template>
+<style>
+#audio-player-container {
+background-color: #fff;
+border-radius: var(--border-radius-l);
+display: grid;
+gap: var(--spacing-s) var(--spacing-s);
+grid-template-areas:
+  "artwork play-icon current-time seek-slider duration"
+  "artwork play-icon volume-output volume-slider mute-icon";
+grid-template-columns: 160px 80px 60px 1fr 60px;
+grid-template-rows: 1fr 1fr;
+margin-block-end: var(--spacing-s);
+padding: var(--spacing-r);
+width: 100%;
+--buffered-width: 0%;
+--seek-before-width: 0%;
+--volume-before-width: 100%; }
+
+#audio-player-container > * {
+align-self: center;
+margin-trim: block; }
+
+#audio-player-container #artwork {
+grid-area: artwork; }
+
+#audio-player-container #artwork > img {
+inline-size: 100%;
+margin: 0;
+max-inline-size: 100%; }
+
+#audio-player-container #current-time {
+display: block;
+font-size: var(--font-size-s);
+grid-area: current-time;
+text-align: right; }
+
+#audio-player-container #duration {
+display: block;
+font-size: var(--font-size-s);
+grid-area: duration;
+text-align: left; }
+
+#audio-player-container #mute-icon {
+background-color: transparent;
+border: 0;
+cursor: pointer;
+grid-area: mute-icon;
+outline: none;
+padding: 0; }
+
+#audio-player-container #play-icon {
+background-color: transparent;
+border: 0;
+cursor: pointer;
+grid-area: play-icon;
+margin-inline: auto;
+outline: none;
+padding: 0; }
+
+#audio-player-container #volume-output {
+display: block;
+font-size: var(--font-size-s);
+grid-area: volume-output;
+text-align: right; }
+
+#audio-player-container #volume-slider {
+grid-area: volume-slider;
+width: 100%; }
+
+#audio-player-container #volume-slider::-moz-range-track {
+background-color: var(--color-border); }
+
+#audio-player-container #volume-slider::-ms-fill-upper {
+background-color: var(--color-border); }
+
+#audio-player-container #volume-slider::-webkit-slider-runnable-track {
+background-color: var(--color-border); }
+
+#audio-player-container #volume-slider::before {
+width: var(--volume-before-width); }
+
+#audio-player-container input[type="range"] {
+height: 10px;
+margin: 0;
+outline: none;
+padding: 0;
+position: relative;
+-webkit-appearance: none;
+width: 100%; }
+
+#audio-player-container input[type="range"]::-webkit-slider-runnable-track {
+background-color: var(--color-background-default);
+border-radius: 10px;
+cursor: pointer;
+height: 10px;
+width: 100%; }
+
+#audio-player-container input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+background-color: #fff;
+border: 3px solid var(--color-border);
+border-radius: 50%;
+box-sizing: content-box;
+cursor: pointer;
+margin: -7px 0 0 0;
+width: 17px;
+height: 17px; }
+
+#audio-player-container input[type="range"]:active::-webkit-slider-thumb {
+background: var(--color-border);
+transform: scale(1.2); }
+</style>
+
+<div id="audio-player-container">
+<audio src="" preload="metadata" loop></audio>
+
+<div id="artwork"><img src="/img/artwork.png" alt="Unfinished Business"></div>
+<button id="play-icon"></button>
+
+<span id="current-time" class="time">0:00</span>
+<input type="range" id="seek-slider" max="100" value="0">
+<span id="duration" class="time">0:00</span>
+
+<output id="volume-output">100</output>
+<input type="range" id="volume-slider" max="100" value="100">
+<button id="mute-icon"></button>
+</div>
+</template>
+
 <article>
 <p>133</p>
-<h2>Bonjour et bienvenue dans Unfinished Business</h2>
-<p>This week on Unfinished Business&#8212;with Andy on holiday in France&#8212;Andy and Rich talk about whether they take work with them when they go &#8220;en vacance.&#8221; Then, they discuss Andy&#8217;s fake website company experiment and why he did it. </p>
-<iframe height="200px" width="100%" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/8d473309-7bf3-42f2-b066-0239304a26a0?dark=false"></iframe>
-<small><a href="https://cdn.simplecast.com/audio/36b1778b-97c6-493a-8c34-1b73c922224c/episodes/8d473309-7bf3-42f2-b066-0239304a26a0/audio/14ce5f7e-667b-4f1f-b5b7-b921b960d365/default_tc.mp3?nocache">Download this episode</a> • <a href="https://youtu.be/RaKpyKeT38I">Watch on YouTube</a> • August 8, 2025</small>
+<h2>Bonjour et bienvenue</h2>
+<p>This week on Unfinished Business&#8212;with Andy on holiday in France&#8212;Andy and Rich talk about whether they take work with them when they go &#8220;en vacance.&#8221; Then, they discuss Andy&#8217;s fake website company experiment and why he did it.</p>
+
+<audio-player
+data-src="/episodes/unfinished-episode-133.mp3"
+data-title="Bonjour et bienvenue dans Unfinished Business"
+data-artist="Andy Clarke and Richard Rutter"
+data-album="Unfinished Business"
+data-artwork="/img/artwork.png">
+</audio-player>
+
+<small><a href="/episodes/unfinished-episode-133.mp3">Download this episode</a> • <a href="https://youtu.be/RaKpyKeT38I">Watch on YouTube</a> • August 8, 2025</small>
 </article>
 
 <article>
 <p>132</p>
 <h2>Aleks Melnikova:  Cosmic Velocity</h2>
 <p>This week on Unfinished Business, Andy and Rich talk with designer and agency co-founder Aleks Melnikova.</p>
-<iframe height="200px" width="100%" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/1a43a59c-7e88-44e1-bcfc-03ba3f984531?dark=false"></iframe>
-<small><a href="https://cdn.simplecast.com/audio/36b1778b-97c6-493a-8c34-1b73c922224c/episodes/1a43a59c-7e88-44e1-bcfc-03ba3f984531/audio/9a09c97f-621c-45a0-a8cf-32e38551c1c3/default_tc.mp3?nocache">Download this episode</a> • <a href="https://youtu.be/afQGkWgs6yY">Watch on YouTube</a> • July 11, 2025</small>
+
+<audio-player
+data-src="/episodes/unfinished-episode-132.mp3"
+data-title="Aleks Melnikova:  Cosmic Velocity"
+data-artist="Andy Clarke and Richard Rutter"
+data-album="Unfinished Business"
+data-artwork="/img/artwork.png">
+</audio-player>
+
+<small><a href="/episodes/unfinished-episode-132.mp3">Download this episode</a> • <a href="https://youtu.be/afQGkWgs6yY">Watch on YouTube</a> • July 11, 2025</small>
 </article>
 
 <article>
 <p>131</p>
 <h2>Jon Harvey: Spinning plates and hamster wheeling</h2>
 <p>This week on Unfinished Business, Andy and Rich talk with writer, producer, and alter-ego of Count Binface, Jon Harvey.</p>
-<iframe height="200px" width="100%" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/fe03faf6-95ec-4fcc-ba83-c72a66033419?dark=false"></iframe>
-<small><a href="https://cdn.simplecast.com/audio/36b1778b-97c6-493a-8c34-1b73c922224c/episodes/fe03faf6-95ec-4fcc-ba83-c72a66033419/audio/838b0aec-f525-4c35-aaf5-1a6ed6b22feb/default_tc.mp3?nocache">Download this episode</a> • <a href="https://youtu.be/jYDRl_MTUhA">Watch on YouTube</a> • June 27, 2025</small>
+
+<audio-player
+data-src="/episodes/unfinished-episode-131.mp3"
+data-title="Jon Harvey: Spinning plates and hamster wheeling"
+data-artist="Andy Clarke and Richard Rutter"
+data-album="Unfinished Business"
+data-artwork="/img/artwork.png">
+</audio-player>
+
+<small><a href="/episodes/unfinished-episode-131.mp3">Download this episode</a> • <a href="https://youtu.be/jYDRl_MTUhA">Watch on YouTube</a> • June 27, 2025</small>
 </article>
 
 <article>
 <p>130</p>
 <h2>Accidental specialisms</h2>
 <p>In this episode of Unfinished Business, Andy and Rich talk about the pros and cons of specialising.</p>
-<iframe height="200px" width="100%" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/134cb8c4-5753-485a-b2eb-7b801110748e?dark=false"></iframe>
-<small><a href="https://cdn.simplecast.com/audio/36b1778b-97c6-493a-8c34-1b73c922224c/episodes/134cb8c4-5753-485a-b2eb-7b801110748e/audio/607898e3-e0db-429f-890e-16d2de01942c/default_tc.mp3?nocache">Download this episode</a> • June 17, 2025</small>
+
+<audio-player
+data-src="/episodes/unfinished-episode-130.mp3"
+data-title="Accidental specialisms"
+data-artist="Andy Clarke and Richard Rutter"
+data-album="Unfinished Business"
+data-artwork="/img/artwork.png">
+</audio-player>
+
+<small><a href="/episodes/unfinished-episode-130.mp3">Download this episode</a> • June 17, 2025</small>
 </article>
 
 <article>
 <p>129</p>
 <h2>Well, hello again</h2>
 <p>Andy and Rich reintroduce themselves, talk about  what they’ve been doing, and their plans for the rebooted Unfinished Business.</p>
-<iframe height="200px" width="100%" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/248effac-4715-4843-ab45-c330ddf5ce1b?dark=false"></iframe>
-<small><a href="https://cdn.simplecast.com/audio/36b1778b-97c6-493a-8c34-1b73c922224c/episodes/248effac-4715-4843-ab45-c330ddf5ce1b/audio/4d444091-bded-474b-8f6e-eecfda9f8065/default_tc.mp3?nocache">Download this episode</a> • June 2, 2025</small>
+
+<audio-player
+data-src="/episodes/unfinished-episode-129.mp3"
+data-title="Well, hello again"
+data-artist="Andy Clarke and Richard Rutter"
+data-album="Unfinished Business"
+data-artwork="/img/artwork.png">
+</audio-player>
+
+<small><a href="/episodes/unfinished-episode-129.mp3">Download this episode</a> • June 2, 2025</small>
 </article>
 
 </section>

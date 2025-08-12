@@ -142,3 +142,241 @@ andyBlink();
 richBlink(); });
 });
 </script>
+
+
+<script>
+class AudioPlayer extends HTMLElement {
+constructor() {
+super();
+const template = document.querySelector('template');
+const templateContent = template.content;
+const shadow = this.attachShadow({ mode: 'open' });
+shadow.appendChild(templateContent.cloneNode(true));
+}
+
+connectedCallback() {
+initAudioPlayer(this);
+}
+}
+
+const initAudioPlayer = (element) => {
+const shadow = element.shadowRoot;
+
+const audioPlayerContainer = shadow.getElementById('audio-player-container');
+const playIconContainer = shadow.getElementById('play-icon');
+const seekSlider = shadow.getElementById('seek-slider');
+const volumeSlider = shadow.getElementById('volume-slider');
+const muteIconContainer = shadow.getElementById('mute-icon');
+const audio = shadow.querySelector('audio');
+const durationContainer = shadow.getElementById('duration');
+const currentTimeContainer = shadow.getElementById('current-time');
+const outputContainer = shadow.getElementById('volume-output');
+
+let playState = 'play';
+let muteState = 'unmute';
+let raf = null;
+
+// Set audio src from attribute
+audio.src = element.getAttribute('data-src');
+
+// SVG icons
+const playSVG = `
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path fill="#734026" fill-rule="evenodd" d="M46.5 24a22.5 22.5 0 1 0-45 0 22.5 22.5 0 0 0 45 0Zm-29.8-7.4a127 127 0 0 0 0 14.8c0 1.7 1 3.1 2.4 3.8 1.4.6 3 .5 4.5-.5l4.5-3c2.1-1.4 3.7-2.8 4.8-4 2-2.1 2-5.3 0-7.4a32.7 32.7 0 0 0-4.8-4l-4.5-3c-1.4-1-3-1.1-4.5-.5-1.4.7-2.3 2-2.4 3.8Z" clip-rule="evenodd"/></svg>`;
+const pauseSVG = `
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path fill="#fde800" fill-rule="evenodd" d="M24 47.5a23.5 23.5 0 1 1 0-47 23.5 23.5 0 0 1 0 47ZM13 31c.1 1.6 1.1 2.8 2.6 3a19.4 19.4 0 0 0 2.8 0c1.5-.2 2.5-1.4 2.5-3l.1-7v-7c-.1-1.6-1.1-2.8-2.6-3a19.4 19.4 0 0 0-2.8 0c-1.5.2-2.5 1.4-2.5 3l-.1 7v7Zm14 0c.1 1.6 1.1 2.8 2.6 3a19.4 19.4 0 0 0 2.8 0c1.5-.2 2.5-1.4 2.5-3l.1-7v-7c-.1-1.6-1.1-2.8-2.6-3a19.4 19.4 0 0 0-2.8 0c-1.5.2-2.5 1.4-2.5 3l-.1 7v7Z" clip-rule="evenodd"/></svg>`;
+const volumeOnSVG = `
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="40" height="40" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path fill="#734026" fill-rule="evenodd" d="m11.5 11.8.5-3.2a53.7 53.7 0 0 1 11.3-7c2.7-1 5.3 1 5.5 3.6a229.9 229.9 0 0 1 0 37.6c-.2 2.7-2.8 4.6-5.5 3.6a42 42 0 0 1-11.3-7l-.5-3.2a33.5 33.5 0 0 1-.5-3.6 80.5 80.5 0 0 1 .5-20.8Zm-3 24.9a80.3 80.3 0 0 1-4.2-1.2c-1.7-.6-2.9-2-3.2-3.8a46.4 46.4 0 0 1 0-15.4 4.8 4.8 0 0 1 3.2-3.8 61.8 61.8 0 0 1 4.2-1.2A29.9 29.9 0 0 0 8 15a83.4 83.4 0 0 0 .5 21.7Zm31-2.1a14.9 14.9 0 0 0 0-21.2 2 2 0 1 1 3-2.8 18.9 18.9 0 0 1 0 26.8 2 2 0 1 1-3-2.8Zm-5-4c3.3-3.6 3.3-9.6 0-13.3a2 2 0 0 1 3-2.6 14.2 14.2 0 0 1 0 18.6 2 2 0 0 1-3-2.6Z" clip-rule="evenodd"/></svg>`;
+const volumeOffSVG = `
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="40" height="40" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path fill="#fde800" fill-rule="evenodd" d="m11.5 11.8.5-3.2a53.7 53.7 0 0 1 11.3-7c2.7-1 5.3 1 5.5 3.6a229.9 229.9 0 0 1 0 37.6c-.2 2.7-2.8 4.6-5.5 3.6a42 42 0 0 1-11.3-7l-.5-3.2a33.5 33.5 0 0 1-.5-3.6 80.5 80.5 0 0 1 .5-20.8Zm-3 24.9a80.3 80.3 0 0 1-4.2-1.2c-1.7-.6-2.9-2-3.2-3.8a46.4 46.4 0 0 1 0-15.4 4.8 4.8 0 0 1 3.2-3.8 61.8 61.8 0 0 1 4.2-1.2A29.9 29.9 0 0 0 8 15a83.4 83.4 0 0 0 .5 21.7Zm25-19.6a2 2 0 0 1 3 0l4 4 4-4a2 2 0 1 1 3 2.8L43.2 24l4.1 4a2 2 0 1 1-2.8 3l-4.1-4.2-4 4.1a2 2 0 1 1-3-2.8l4.2-4.1-4.1-4a2 2 0 0 1 0-3Z" clip-rule="evenodd"/></svg>`;
+
+const setPlayIcon = (state) => {
+playIconContainer.innerHTML = (state === 'play') ? playSVG : pauseSVG;
+playIconContainer.setAttribute('aria-label', state === 'play' ? 'Play' : 'Pause');
+};
+
+const setMuteIcon = (state) => {
+muteIconContainer.innerHTML = (state === 'unmute') ? volumeOnSVG : volumeOffSVG;
+muteIconContainer.setAttribute('aria-label', state === 'unmute' ? 'Mute' : 'Unmute');
+};
+
+// Initialize icons
+setPlayIcon('play');
+setMuteIcon('unmute');
+
+// Time format helper
+const calculateTime = (secs) => {
+const minutes = Math.floor(secs / 60);
+const seconds = Math.floor(secs % 60);
+return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+};
+
+// Update buffered amount style
+const displayBufferedAmount = () => {
+try {
+if (audio.buffered.length > 0) {
+const bufferedAmount = Math.floor(audio.buffered.end(audio.buffered.length - 1));
+audioPlayerContainer.style.setProperty('--buffered-width', `${(bufferedAmount / seekSlider.max) * 100}%`);
+}
+} catch (e) {}
+};
+
+// Update duration & slider max
+const displayDuration = () => {
+if (!isNaN(audio.duration)) durationContainer.textContent = calculateTime(audio.duration);
+};
+
+const setSliderMax = () => {
+if (!isNaN(audio.duration)) seekSlider.max = Math.floor(audio.duration);
+};
+
+// While playing UI update loop
+const whilePlaying = () => {
+seekSlider.value = Math.floor(audio.currentTime);
+currentTimeContainer.textContent = calculateTime(seekSlider.value);
+audioPlayerContainer.style.setProperty('--seek-before-width', `${seekSlider.value / seekSlider.max * 100}%`);
+raf = requestAnimationFrame(whilePlaying);
+};
+
+// Show range progress bar for seek or volume sliders
+const showRangeProgress = (rangeInput) => {
+if (rangeInput === seekSlider) audioPlayerContainer.style.setProperty('--seek-before-width', rangeInput.value / rangeInput.max * 100 + '%');
+else audioPlayerContainer.style.setProperty('--volume-before-width', rangeInput.value / rangeInput.max * 100 + '%');
+};
+
+// Setup audio events to update UI
+if (audio.readyState > 0) {
+displayDuration();
+setSliderMax();
+displayBufferedAmount();
+} else {
+audio.addEventListener('loadedmetadata', () => {
+displayDuration();
+setSliderMax();
+displayBufferedAmount();
+});
+}
+
+audio.addEventListener('progress', displayBufferedAmount);
+
+// Play/pause button handler
+playIconContainer.addEventListener('click', () => {
+if (playState === 'play') {
+audio.play();
+setPlayIcon('pause');
+requestAnimationFrame(whilePlaying);
+playState = 'pause';
+
+// Update Media Session metadata on play
+updateMediaSession(element);
+} else {
+audio.pause();
+setPlayIcon('play');
+cancelAnimationFrame(raf);
+playState = 'play';
+}
+});
+
+// Mute/unmute button handler
+muteIconContainer.addEventListener('click', () => {
+if (muteState === 'unmute') {
+audio.muted = true;
+setMuteIcon('mute');
+muteState = 'mute';
+} else {
+audio.muted = false;
+setMuteIcon('unmute');
+muteState = 'unmute';
+}
+});
+
+// Seek slider handlers
+seekSlider.addEventListener('input', (e) => {
+showRangeProgress(e.target);
+currentTimeContainer.textContent = calculateTime(seekSlider.value);
+if (!audio.paused) cancelAnimationFrame(raf);
+});
+
+seekSlider.addEventListener('change', () => {
+audio.currentTime = seekSlider.value;
+if (!audio.paused) requestAnimationFrame(whilePlaying);
+});
+
+// Volume slider handler
+volumeSlider.addEventListener('input', (e) => {
+const value = e.target.value;
+showRangeProgress(e.target);
+outputContainer.textContent = value;
+audio.volume = value / 100;
+});
+
+// Media Session controls integration
+if ('mediaSession' in navigator) {
+// Setup action handlers scoped to this player
+
+navigator.mediaSession.setActionHandler('play', () => {
+if (playState === 'play') {
+audio.play();
+setPlayIcon('pause');
+requestAnimationFrame(whilePlaying);
+playState = 'pause';
+updateMediaSession(element);
+}
+});
+
+navigator.mediaSession.setActionHandler('pause', () => {
+if (playState === 'pause') {
+audio.pause();
+setPlayIcon('play');
+cancelAnimationFrame(raf);
+playState = 'play';
+}
+});
+
+navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+audio.currentTime = Math.max(audio.currentTime - (details.seekOffset || 10), 0);
+});
+
+navigator.mediaSession.setActionHandler('seekforward', (details) => {
+audio.currentTime = Math.min(audio.currentTime + (details.seekOffset || 10), audio.duration);
+});
+
+navigator.mediaSession.setActionHandler('seekto', (details) => {
+if (details.fastSeek && 'fastSeek' in audio) {
+audio.fastSeek(details.seekTime);
+return;
+}
+audio.currentTime = details.seekTime;
+});
+
+navigator.mediaSession.setActionHandler('stop', () => {
+audio.currentTime = 0;
+seekSlider.value = 0;
+audioPlayerContainer.style.setProperty('--seek-before-width', '0%');
+currentTimeContainer.textContent = '0:00';
+if (playState === 'pause') {
+setPlayIcon('play');
+cancelAnimationFrame(raf);
+playState = 'play';
+}
+});
+}
+};
+
+// Update Media Session metadata for the player passed in
+function updateMediaSession(element) {
+if (!('mediaSession' in navigator)) return;
+
+navigator.mediaSession.metadata = new MediaMetadata({
+title: element.getAttribute('data-title') || 'Unknown title',
+artist: element.getAttribute('data-artist') || '',
+album: element.getAttribute('data-album') || '',
+artwork: [
+{ src: element.getAttribute('data-artwork') || '', sizes: '96x96', type: 'image/png' },
+{ src: element.getAttribute('data-artwork') || '', sizes: '128x128', type: 'image/png' },
+{ src: element.getAttribute('data-artwork') || '', sizes: '192x192', type: 'image/png' },
+{ src: element.getAttribute('data-artwork') || '', sizes: '256x256', type: 'image/png' },
+]
+});
+}
+
+customElements.define('audio-player', AudioPlayer);</script>
