@@ -7,7 +7,7 @@
       "uuidString" : "C634EFF9-7C1F-423F-97CA-45996107111B"
     }
   ],
-  "creatorBuild" : "34704",
+  "creatorBuild" : "34892",
   "files" : {
     "\/_partials\/_copyright.kit" : {
       "cB" : 0,
@@ -232,6 +232,14 @@
       "hM" : 0,
       "oA" : 0,
       "oAP" : "\/episodes\/unfinished-episode-138.mp3",
+      "oF" : 0
+    },
+    "\/episodes\/unfinished-episode-139.mp3" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/episodes\/unfinished-episode-139.mp3",
       "oF" : 0
     },
     "\/favicon-96x96.png" : {
@@ -1531,6 +1539,9 @@
         "active" : 0,
         "optionString" : "{'skipBlankLines': false, 'ignoreComments': false}"
       },
+      "no-unassigned-vars" : {
+        "active" : 0
+      },
       "no-undef" : {
         "active" : 1,
         "optionString" : "{'typeof': false}"
@@ -1611,7 +1622,8 @@
         "active" : 0
       },
       "no-useless-escape" : {
-        "active" : 1
+        "active" : 1,
+        "optionString" : "{'allowRegexCharacters': []}"
       },
       "no-useless-rename" : {
         "active" : 0,
